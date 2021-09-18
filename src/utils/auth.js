@@ -30,11 +30,25 @@ export const authorize = (identifier, password) => {
     .then((response) => response.json())
     .then((data) => {
       if (data.jwt) {
-        localStorage.setItem('jwt', data.jwt);
-        return data;
+        localStorage.setItem('jwt', data.jwt); // save token to the user's localStorage 
+        return data; //return object with user data
       } else {
-        return;
+        return; // we need to do this to avoid ESLint errors
       }
     })
     .catch((err) => console.log(err));
+};
+
+// Check token validity by sending a request to the endpoint /users/me
+export const checkToken = (token) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "GET",
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+  })
+  .then((res) => res.json())
+  .then((data) => data);
 };
