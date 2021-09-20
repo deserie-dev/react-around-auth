@@ -1,9 +1,9 @@
 .modal_type_tooltip {
   align-items: center;
-  /* padding: 60px 32px;
+  padding: 60px 32px;
   justify-content: center;
   align-items: center;
-  display: flex; */
+  display: flex;
 }
 
 @media (max-width: 480px) {

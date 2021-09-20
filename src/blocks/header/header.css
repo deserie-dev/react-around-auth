@@ -1,12 +1,14 @@
 @import url("./__logo/header__logo.css");
+@import url("./__menu/header__menu.css");
+@import url("./__menu-item/header__menu-item.css");
 
 .header {
   border-bottom: 1px solid rgba(84, 84, 84, 0.7);
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: space-between;
   max-width: 880px;
-  margin: 0px auto 0px auto;
+  margin: 0px auto;
   padding: 45px 0px 41px 0px;
   width: calc(100% * (880 / 1280));
 }
