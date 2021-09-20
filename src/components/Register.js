@@ -22,17 +22,13 @@ const Register = ({ handleRegister }) => {
   
   return (
     <>
-    <Header>
-      <nav>
-        <Link className='nav-menu__link' to='/sign-up'>Sign up</Link>
-      </nav>
-    </Header>
+    <Header link='/signin' linkText='Log in'></Header>
     <form className='modal modal_dark' onSubmit={handleSubmit} >
       <input className='modal__form-control login__form-email' placeholder='Email' type='email' name='email' minLength={2} maxLength={200} value={userEmail} onChange={handleChange} required />
       <input className='modal__form-control login__form-password' placeholder='Password' type='password' name='password' minLength={2} maxLength={200} value={userPassword} onChange={handleChange} required />
       <button className='modal__form-submit' type='submit' aria-label='register'>Sign Up</button>
     </form>
-    <Link className='modal__link' to='/signup'>Already a member? Log in here!</Link>
+    <Link className='modal__link' to='/signin'>Already a member? Log in here!</Link>
     </>
   );
        
