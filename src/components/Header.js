@@ -8,7 +8,7 @@ function Header(props) {
       <header className="header">
       <img className="header__logo" src={logo} alt="Around The World" />
         <ul className="header__menu">
-          <li className="header__menu-item">{props.userEmail}</li>
+          <li className="header__menu-item">{props.email}</li>
           <li className="header__menu-item" onClick={props.onLogOut}>Log out</li>
         </ul>
       </header>
