@@ -30,7 +30,7 @@ function App() {
   const[loggedIn, setLoggedIn] = React.useState(false);
   const[isRegistered, setIsRegistered] = React.useState(false);
   const[isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
-  const[userEmail, setUserEmail] = React.useState('');
+  const[email, setEmail] = React.useState('');
   
   //////////////////////////////////////////////////////////////////  
 
@@ -60,7 +60,7 @@ function App() {
       auth.checkToken(token)
       .then((res) => {
         setLoggedIn(true);
-        setUserEmail(res.data.userEmail);
+        setEmail(res.data.email);
         history.push('/');   
       })
       .catch((err) => {
@@ -170,11 +170,11 @@ function App() {
 
   /////////////////////////////////////////////////////////////////////////////
 
-  function handleRegister (userEmail, userPassword) {
-    if (!userEmail || !userPassword) {
+  function handleRegister (email, password) {
+    if (!email || !password) {
       return;
     }
-    auth.register(userEmail, userPassword)
+    auth.register(email, password)
     .then((res) => {
       if (res) {
         setIsRegistered(true);
@@ -190,15 +190,15 @@ function App() {
     })
   }
 
-  function handleLogin(userEmail, userPassword) {
-    if(!userEmail || !userPassword) {
+  function handleLogin(email, password) {
+    if(!email || !password) {
       return;
     }
-    auth.authorize(userEmail, userPassword)
+    auth.authorize(email, password)
     .then((data) => {
       if (data.token) {
         setLoggedIn(true);
-        setUserEmail(userEmail);
+        setEmail(email);
         history.push('/main') 
       }     
     })
@@ -209,7 +209,7 @@ function App() {
 
   function onLogOut() {
     setLoggedIn(false);
-    setUserEmail('');
+    setEmail('');
     localStorage.removeItem('token');
     history.push('/signin');
   }
@@ -230,7 +230,7 @@ function App() {
         <Header 
           link='/signin'
           linkText='Log out' 
-          userEmail={userEmail}
+          email={email}
           loggedIn={loggedIn}
           onClick={onLogOut}
         />
@@ -244,7 +244,7 @@ function App() {
           onCardDelete={handleDeleteCardClick}
           onCardClick={handleCardClick} 
           cards={cards}
-          userEmail={userEmail}
+          email={email}
           onLogout={onLogOut}
           onClose={closeAllPopups}
         />

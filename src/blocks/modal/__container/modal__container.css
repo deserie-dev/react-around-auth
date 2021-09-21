@@ -1,12 +1,9 @@
-/* @import url("./_type/modal__container_type_avatar.css");
-@import url("./_type/modal__container_type_delete.css"); */
-
 .modal__container {
   background-color: #ffffff;
   border-radius: 10px;
   box-sizing: border-box;
-  max-width: 430px;
-  width: 100%;
+  width: 430px;
+  /* width: 100%; */
   position: relative;
   display: flex;
   flex-direction: column;

@@ -15,17 +15,19 @@ export const register = (email, password) => {
     .then((res) => {
       return res;
     })
-    .catch((err) => console.log(err));
+    .catch((error) => {
+      console.error(error);
+    });
 };
 
-export const authorize = (identifier, password) => {
+export const authorize = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ identifier, password })
+    body: JSON.stringify({ email, password })
   })
     .then((response) => response.json())
     .then((data) => {
@@ -33,10 +35,12 @@ export const authorize = (identifier, password) => {
         localStorage.setItem('jwt', data.jwt); // save token to the user's localStorage 
         return data; //return object with user data
       } else {
-        return; // we need to do this to avoid ESLint errors
+        return;
       }
     })
-    .catch((err) => console.log(err));
+    .catch((error) => {
+      console.error(error);
+    });
 };
 
 // Check token validity by sending a request to the endpoint /users/me
