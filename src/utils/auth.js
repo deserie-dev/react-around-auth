@@ -19,9 +19,6 @@ export const register = (email, password) => {
     .then((res) => {
       return res;
     })
-    .catch((error) => {
-      console.error(error);
-    });
 };
 
 export const authorize = (email, password) => {
@@ -44,9 +41,6 @@ export const authorize = (email, password) => {
         return;
       }
     })
-    .catch((error) => {
-      console.error(error);
-    });
 };
 
 // Check token validity by sending a request to the endpoint /users/me
