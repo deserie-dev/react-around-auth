@@ -29,9 +29,9 @@ function App() {
 
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [isRegistered, setIsRegistered] = React.useState(false);
-  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
   const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState("");
+  const [password, setPassword] = React.useState('');
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
   
   //////////////////////////////////////////////////////////////////  
 
@@ -199,8 +199,8 @@ function App() {
     .then((data) => {
       if (data.token) {
         setLoggedIn(true);
-        setEmail(email);
-        history.push('/main') 
+        setEmail(email); 
+        history.push('/main')
       }     
     })
     .catch((err) => {
@@ -209,10 +209,10 @@ function App() {
   }
 
   function onLogOut() {
+    history.push('/signin');
     setLoggedIn(false);
     setEmail('');
     localStorage.removeItem('token');
-    history.push('/signin');
   }
 
   /////////////////////////////////////////////////////////////////////////////    
@@ -233,10 +233,11 @@ function App() {
           linkText='Log out' 
           email={email}
           loggedIn={loggedIn}
-          onClick={onLogOut}
+          onLogOut={onLogOut}
         />
 
         <Main
+          onLogOut={onLogOut}
           component={Main}
           onEditAvatarClick={handleEditAvatarClick} 
           onEditProfileClick={handleEditProfileClick} 
@@ -246,7 +247,6 @@ function App() {
           onCardClick={handleCardClick} 
           cards={cards}
           email={email}
-          onLogout={onLogOut}
           onClose={closeAllPopups}
         />
 
@@ -271,8 +271,8 @@ function App() {
         setEmail={setEmail}
         setPassword={setPassword}
         handleLogin={handleLogin}
-        setIsInfoTooltipOpen={setIsInfoTooltipOpen}
         handleRegister={handleRegister} 
+        setIsInfoTooltipOpen={setIsInfoTooltipOpen}
       />
       </Route>
       <Route exact path='/'>
@@ -282,8 +282,8 @@ function App() {
     </Switch>   
 
         <InfoTooltip
-          isOpen={isInfoTooltipOpen} 
           isRegistered={isRegistered}
+          isOpen={isInfoTooltipOpen}  
           onClose={closeAllPopups}
         />  
 
