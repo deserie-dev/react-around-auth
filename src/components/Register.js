@@ -1,19 +1,14 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Header from './Header';
 
-const Register = ({ handleRegister }) => {
-  const history = useHistory();  
+const Register = (props) => {  
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState(''); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleRegister(email, password);
-
-    if(localStorage.getItem('jwt')) {
-      history.push('/signin');
-    }
+    props.handleRegister(email, password);
   }  
   
   return (

@@ -27,10 +27,11 @@ function App() {
   const [cards, setCards] = React.useState([]);
   const [cardToDelete, setCardToDelete] = React.useState();
 
-  const[loggedIn, setLoggedIn] = React.useState(false);
-  const[isRegistered, setIsRegistered] = React.useState(false);
-  const[isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
-  const[email, setEmail] = React.useState('');
+  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [isRegistered, setIsRegistered] = React.useState(false);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState("");
   
   //////////////////////////////////////////////////////////////////  
 
@@ -254,10 +255,25 @@ function App() {
       </ProtectedRoute>
 
       <Route path='/signin'>
-        <Login handleLogin={handleLogin} />
+        <Login 
+          email={email}
+          password={password}
+          setEmail={setEmail}
+          setPassword={setPassword}
+          handleLogin={handleLogin}
+          setIsInfoTooltipOpen={setIsInfoTooltipOpen}
+        />
       </Route>
       <Route path='/signup'>
-      <Register handleRegister={handleRegister} />
+      <Register 
+        email={email}
+        password={password}
+        setEmail={setEmail}
+        setPassword={setPassword}
+        handleLogin={handleLogin}
+        setIsInfoTooltipOpen={setIsInfoTooltipOpen}
+        handleRegister={handleRegister} 
+      />
       </Route>
       <Route exact path='/'>
         {loggedIn ? <Redirect to='/main' /> : <Redirect to='/signin' />}
