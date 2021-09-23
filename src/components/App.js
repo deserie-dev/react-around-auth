@@ -29,10 +29,10 @@ function App() {
 
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [isRegistered, setIsRegistered] = React.useState(false);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
-  
+    
   //////////////////////////////////////////////////////////////////  
 
   React.useEffect(() => {
@@ -160,6 +160,10 @@ function App() {
     setSelectedCard(cardData);
   }
 
+  function handleToolTipModal() {
+    setIsInfoTooltipOpen(true);
+  }
+
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
@@ -179,16 +183,20 @@ function App() {
     .then((res) => {
       if (res) {
         setIsRegistered(true);
-        setIsInfoTooltipOpen(true);
+        handleToolTipModal();
         history.push('/signin');
       } else {
         setIsRegistered(false);
-        setIsInfoTooltipOpen(true);
+        handleToolTipModal();
       }    
     })
+    .then(handleToolTipModal)
     .catch((err) => {
+      setIsRegistered(false);
+      handleToolTipModal();
       console.log(err);
-    })
+    });
+    
   }
 
   function handleLogin(email, password) {
